@@ -1,0 +1,8 @@
+  <div>
+  <p><%= hourly.summary %></p>
+  </div>
+  <ul>
+    <% hourly.data.forEach(function(hourData){ %>
+    <li><%= hourData.apparentTemperature %></li>
+    <%  }); %>
+  </ul>
