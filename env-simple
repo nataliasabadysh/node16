@@ -1,4 +1,4 @@
 PORT=3000
-SEND_GRID_API_KEY=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
-MONGO_DB_URI=mongodb+srv://nodetaskmanager:nodetaskmanager34GH@nodetaskmanager-gtzjc.mongodb.net/task-manager?retryWrites=true&w=majority
-JWT_SECRET_KEY=jtjtjtjtjsimpleSecretKEty
+SEND_GRID_API_KEY=your SendGrid key
+MONGO_DB_URI=mongodb://localhost:27017/task-manager
+JWT_SECRET_KEY=YouSecterKey
