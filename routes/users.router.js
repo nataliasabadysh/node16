@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const authCheck = require("../middlewares/authCheck")
 
 const {
   getUser,
@@ -9,9 +10,9 @@ const {
 } = require("../controllers/users")
 
 router
-  .patch("/users/:userId", updateUser)
-  .delete("/users/:userId", deleteUser)
-  .get("/users", getUsers)
+  .patch("/users", authCheck, updateUser)
+  .delete("/users/:userId", authCheck, deleteUser)
+  .get("/users", authCheck, getUsers)
   .get("/users/:userId", getUserById)
   .get("/user", getUser) // if get user by token
 

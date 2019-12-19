@@ -48,7 +48,7 @@ userSchema.methods.toJSON = function() {
   const user = this
   const userObject = user.toObject()
 
-  delete userObject.password
+  // delete userObject.password
   delete userObject.tokens
   delete userObject.avatar
 
@@ -69,20 +69,34 @@ userSchema.methods.generateAuthToken = async function() {
 }
 
 userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await Users.findOne({ email })
+  const user = await Users.findOne(
+    { email },
+    { __v: 0, _id: 0, createdAt: 0, updatedAt: 0, tasks: 0 }
+  )
 
   if (!user) {
-    throw new Error("Unable to login")
+    throw new Error("Unable to login or register")
   }
 
   const isMatch = await bcrypt.compare(password, user.password)
 
   if (!isMatch) {
-    throw new Error("Unable to login")
+    throw new Error("Some cred if missing or not valid")
   }
 
   return user
 }
+// simple pre method by regexp /^find/
+// userSchema.pre(/^find/, async function(next) {
+//   const user = this
+//   console.log("pre method Mongoose Schema/Model by ^find")
+
+//   if (user.isModified("password")) {
+//     user.password = await bcrypt.hash(user.password, 8)
+//   }
+
+//   next()
+// })
 
 // Hash the plain text password before saving
 userSchema.pre("save", async function(next) {

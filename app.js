@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/", routes) // http://localhost:3000
 
 app.use((err, req, res) => {
-  console.log("err :", err)
+  console.log("err :", err.message)
   res.send(err.message)
 })
 

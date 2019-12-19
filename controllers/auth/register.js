@@ -16,6 +16,10 @@ module.exports = async (req, res) => {
 
     res.json(result)
   } catch (error) {
-    throw new Error(error)
+    // Основні статус коди помилки
+    // 400
+    // 403
+    // 404
+    res.status(400).json(error)
   }
 }
